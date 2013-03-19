@@ -143,7 +143,11 @@ function loadFile(file, db, callback) {
         file = parentPath.join('/') + '/' + file;
     }
 
-    load(require(file), db, callback);
+    if (file.match(/\.(js|coffee)$/)) {
+      load(require(file), db, callback);
+    } else {
+      callback()
+    }
 }
 
 
